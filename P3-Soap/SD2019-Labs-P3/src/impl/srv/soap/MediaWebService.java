@@ -40,8 +40,19 @@ public class MediaWebService implements SoapMedia {
 	}
 
 	@Override
-	public byte[] download(String id) throws MicrogramException {		
-		throw new MicrogramException("Not implemented...");
+	public byte[] download(String id) throws MicrogramException {	
+		try{
+			File filename =new File(ROOT_DIR + id + MEDIA_EXTENSION);
+
+			if( !filename.exists() )
+				throw new MicrogramException("Not Found...");
+
+				return Files.readAllBytes(filename.toPath());
+		 } catch( IOException x  ) { 
+			x.printStackTrace();
+			throw new MicrogramException("Internal Error..." + x.getMessage());
+		}	
+		
 	}
 }
 
