@@ -47,7 +47,7 @@ public class MediaWebService implements SoapMedia {
 			if( !filename.exists() )
 				throw new MicrogramException("Not Found...");
 
-				return Files.readAllBytes(filename.toPath());
+			return Files.readAllBytes(filename.toPath());
 		 } catch( IOException x  ) { 
 			x.printStackTrace();
 			throw new MicrogramException("Internal Error..." + x.getMessage());
